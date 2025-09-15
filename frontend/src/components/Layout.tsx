@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../stores/authStore';
 import { Button } from './ui/Button';
-import { Card } from './ui/Card';
+// import { Card } from './ui/Card';
 import { 
   Home, 
   CheckSquare, 

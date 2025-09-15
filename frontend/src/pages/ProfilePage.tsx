@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuthStore } from '../stores/authStore';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { User, Mail, Phone, MapPin, Calendar, Award, Star } from 'lucide-react';
+import { User, Mail, Phone, Calendar, Award, Star } from 'lucide-react';
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuthStore();

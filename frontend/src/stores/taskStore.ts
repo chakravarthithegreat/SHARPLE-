@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Task, TaskForm } from '../types';
+import type { Task, TaskForm } from '../types';
 import apiClient from '../utils/api';
 
 interface TaskState {
@@ -62,8 +62,8 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
       const response = await apiClient.getTasks(queryParams);
       
       set({
-        tasks: response.tasks,
-        pagination: response.pagination,
+        tasks: (response as any).tasks,
+        pagination: (response as any).pagination,
         isLoading: false,
         error: null,
       });
@@ -82,7 +82,7 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
       const response = await apiClient.getTask(id);
       
       set({
-        currentTask: response.task,
+        currentTask: (response as any).task,
         isLoading: false,
         error: null,
       });
@@ -101,7 +101,7 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
       const response = await apiClient.createTask(taskData);
       
       set((state) => ({
-        tasks: [response.task, ...state.tasks],
+        tasks: [(response as any).task, ...state.tasks],
         isLoading: false,
         error: null,
       }));
@@ -121,9 +121,9 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
       
       set((state) => ({
         tasks: state.tasks.map(task => 
-          task._id === id ? response.task : task
+          task._id === id ? (response as any).task : task
         ),
-        currentTask: state.currentTask?._id === id ? response.task : state.currentTask,
+        currentTask: state.currentTask?._id === id ? (response as any).task : state.currentTask,
         isLoading: false,
         error: null,
       }));
@@ -163,9 +163,9 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
       
       set((state) => ({
         tasks: state.tasks.map(task => 
-          task._id === taskId ? response.task : task
+          task._id === taskId ? (response as any).task : task
         ),
-        currentTask: state.currentTask?._id === taskId ? response.task : state.currentTask,
+        currentTask: state.currentTask?._id === taskId ? (response as any).task : state.currentTask,
         isLoading: false,
         error: null,
       }));
@@ -181,16 +181,16 @@ export const useTaskStore = create<TaskStore>((set, get) => ({
   reviewTask: async (taskId: string, approved: boolean, comments?: string, qualityScore?: number) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await apiClient.request(`/tasks/${taskId}/review`, {
+      const response = await (apiClient as any).request(`/tasks/${taskId}/review`, {
         method: 'POST',
         body: JSON.stringify({ approved, comments, qualityScore }),
       });
       
       set((state) => ({
         tasks: state.tasks.map(task => 
-          task._id === taskId ? response.task : task
+          task._id === taskId ? (response as any).task : task
         ),
-        currentTask: state.currentTask?._id === taskId ? response.task : state.currentTask,
+        currentTask: state.currentTask?._id === taskId ? (response as any).task : state.currentTask,
         isLoading: false,
         error: null,
       }));

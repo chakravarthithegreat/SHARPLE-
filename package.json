@@ -7,10 +7,12 @@
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
-    "build": "cd frontend && npm install && npm run build",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd frontend && npm ci && npm run build",
+    "build:backend": "cd backend && npm ci",
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "start": "cd backend && npm start",
-    "postinstall": "cd frontend && npm install"
+    "postinstall": "npm run build:frontend"
   },
   "keywords": ["workforce", "management", "productivity", "react", "nodejs"],
   "author": "SHARPLE Team",

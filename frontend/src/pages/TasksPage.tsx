@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
-import { CheckSquare, Plus, Filter, Search } from 'lucide-react';
+import { CheckSquare, Plus } from 'lucide-react';
 
 const TasksPage: React.FC = () => {
   return (

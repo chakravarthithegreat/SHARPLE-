@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { User, LoginForm, RegisterForm } from '../types';
+import type { User, LoginForm, RegisterForm } from '../types';
 import apiClient from '../utils/api';
 
 interface AuthState {
@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
         try {
           const response = await apiClient.login(credentials.email, credentials.password);
-          const { user, token } = response;
+          const { user, token } = response as { user: User; token: string };
           
           apiClient.setToken(token);
           
@@ -66,7 +66,7 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
         try {
           const response = await apiClient.register(userData);
-          const { user, token } = response;
+          const { user, token } = response as { user: User; token: string };
           
           apiClient.setToken(token);
           
@@ -104,7 +104,7 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
         try {
           const response = await apiClient.getProfile();
-          const { user } = response;
+          const { user } = response as { user: User };
           
           set({
             user,
@@ -129,7 +129,7 @@ export const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
         try {
           const response = await apiClient.updateProfile(userData);
-          const { user } = response;
+          const { user } = response as { user: User };
           
           set({
             user,

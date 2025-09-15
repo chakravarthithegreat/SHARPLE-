@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuthStore } from '../stores/authStore';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
@@ -7,7 +7,7 @@ import {
   FolderOpen, 
   Users, 
   TrendingUp,
-  Clock,
+  // Clock,
   Star,
   Trophy,
   Target
