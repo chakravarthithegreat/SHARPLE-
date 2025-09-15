@@ -90,3 +90,4 @@ Create `.env` files in both frontend and backend directories with the required e
 ## 🚀 Deployment
 
 The application is configured for Netlify deployment with serverless functions and MongoDB Atlas for database hosting.
+# Force Netlify to re-read configuration
